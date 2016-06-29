@@ -22,7 +22,7 @@
             height: 905px;
             width: 675px;
             overflow: hidden;
-            background-color: black;
+            background-color: yellow;
         }
     </style>
 
@@ -41,7 +41,6 @@
     </body>
 
     <script>
-         //ALL THE JAVASCRIPT IS GOING HERE
         //First, build out your Tableau content
         var viz, one, workbooka, activeSheet, Worksheet, worksheet;
         var onePh = document.getElementById("tableauViz2");
@@ -52,10 +51,7 @@
             hideTabs: true,
             hideToolbar: true,
             hideSpinner: true,
-            onFirstInteractive: function() {
-                workbooka = viz2.getWorkbook();
-            }
-        };
+            };
 
 
         //ALL THE JAVASCRIPT IS GOING HERE
