@@ -27,11 +27,12 @@
     </style>
 
     <body>
+        <div class="sl-block" data-block-type="iframe" style="width: 300px; height: 480px">
+            <div id="youtube"></div>
+        </div>
         <div class="sl-block" data-block-type="iframe" style="width: 845px; height: 480px">
             <!--This is where you are going to put Tableau Viz2-->
             <div id="tableauViz2"></div>
-          <div class="sl-block" data-block-type="iframe" style="width: 300px; height: 480px">
-            <div id="youtube"></div>
         </div>
         <div class="sl-block" data-block-type="iframe" style="width: 845px; height: 480px">
             <!--This is where you are going to put Tableau Viz1-->
@@ -129,7 +130,15 @@
             //it's going to check every second, resetting the month variable
             //which is how we can move back and forth in the viz, based on the time of the video
             window.setInterval(function() {
+                //get the current time in seconds and convert to ms
                 var curTime = player.getCurrentTime() * 1000;
+                //var month = Math.floor((curTime - 10700) / 1000)
+                //This converts that milliseconds to a month by subtracting and rounding downloads
+                //This is because there is a lead-in on the video for which there is no data
+                //We want it to start at a specific point - 10.1 seconds in.
+                //We get the time, convert it, subtract out the duration and divide by 1000 to get back to an integer
+                //Math.floor rounds it down
+                //if that value is > 1 then we've passed the barrier and we want to show the viz
                 var month = Math.floor(curTime/1000)
                 changeDateMonthNumber(month);
             }, 1000);
