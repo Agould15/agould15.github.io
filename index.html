@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>The Last 60 Seconds of Your Life</title>
+    <title>FlyingTheFinalTurn</title>
     <script src="https://public.tableau.com/javascripts/api/tableau-2.0.0.min.js" type="text/javascript"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <style>
@@ -12,16 +12,25 @@
             background-color: red;
         }
 
-        #tableauViz1 {
-            height: 480px;
-            width: 854px;
+          #tableauViz2 {
+            height: 905px;
+            width: 675px;
             overflow: hidden;
             background-color: blue;
+        }
+        #tableauViz1 {
+            height: 905px;
+            width: 675px;
+            overflow: hidden;
+            background-color: black;
         }
     </style>
 
     <body>
-        <div class="sl-block" data-block-type="iframe" style="width: 854px; height: 480px">
+        <div class="sl-block" data-block-type="iframe" style="width: 845px; height: 480px" align="left">
+            <!--This is where you are going to put Tableau Viz2-->
+            <div id="tableauViz2"></div>
+          <div class="sl-block" data-block-type="iframe" style="width: 300px; height: 480px" align="right">
             <div id="youtube"></div>
         </div>
         <div class="sl-block" data-block-type="iframe" style="width: 845px; height: 480px">
@@ -32,27 +41,44 @@
     </body>
 
     <script>
+         //ALL THE JAVASCRIPT IS GOING HERE
+        //First, build out your Tableau content
+        var viz, one, workbooka, activeSheet, Worksheet, worksheet;
+        var onePh = document.getElementById("tableauViz2");
+        oneUrl = "https://public.tableau.com/profile/a.gould#!/vizhome/TheLast60SecondsofYourLife2/TheLast60Seconds?:showVizHome=no&:display_spinner=no&:jsdebug=n&:embed=y&:display_overlay=no&:display_static_image=no&:animate_transition=yes";
+        var oneOptions = {
+            width: "110%",
+            height: "110%",
+            hideTabs: true,
+            hideToolbar: true,
+            hideSpinner: true,
+            onFirstInteractive: function() {
+                workbooka = viz2.getWorkbook();
+            }
+        };
+
+
         //ALL THE JAVASCRIPT IS GOING HERE
         //First, build out your Tableau content
         var viz, one, workbooka, activeSheet, Worksheet, worksheet;
         var onePh = document.getElementById("tableauViz1");
         oneUrl = "https://public.tableau.com/views/TheLast60SecondsofYourLife2/FlyingtheFinalTurn?:showVizHome=no&:display_spinner=no&:jsdebug=n&:embed=y&:display_overlay=no&:display_static_image=no&:animate_transition=yes";
         var oneOptions = {
-            width: "100%",
-            height: "120%",
+            width: "110%",
+            height: "110%",
             hideTabs: true,
             hideToolbar: true,
             hideSpinner: true,
             onFirstInteractive: function() {
                 workbooka = viz1.getWorkbook();
-                workbooka.changeParameterValueAsync("Animate", 0);
+                workbooka.changeParameterValueAsync("Animate", 1);
             }
         };
         //initiate visualiztions
         viz1 = new tableauSoftware.Viz(onePh, oneUrl, oneOptions);
         // Load the YouTube API asyncronously
         var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
+        tag.src = "http://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         // This function creates an <iframe> (and YouTube player)
@@ -107,15 +133,7 @@
             //it's going to check every second, resetting the month variable
             //which is how we can move back and forth in the viz, based on the time of the video
             window.setInterval(function() {
-                //get the current time in seconds and convert to ms
                 var curTime = player.getCurrentTime() * 1000;
-                //var month = Math.floor((curTime - 10700) / 1000)
-                //This converts that milliseconds to a month by subtracting and rounding downloads
-                //This is because there is a lead-in on the video for which there is no data
-                //We want it to start at a specific point - 10.1 seconds in.
-                //We get the time, convert it, subtract out the duration and divide by 1000 to get back to an integer
-                //Math.floor rounds it down
-                //if that value is > 1 then we've passed the barrier and we want to show the viz
                 var month = Math.floor(curTime/1000)
                 changeDateMonthNumber(month);
             }, 1000);
@@ -125,7 +143,7 @@
         //this will get substituted for the "month" variable in the interval
         function changeDateMonthNumber(a) {
             workbooka.changeParameterValueAsync("Animate", [a]);
-        };
+        }
 
         // function startViz(player) {}
     </script>
