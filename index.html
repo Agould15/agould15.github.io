@@ -22,13 +22,13 @@
     </style>
 
     <body>
-        <div class="box" data-block-type="iframe" style="height: 480px align= left">
+        <iframe frameborder="0"  height= "480" align= "left">
             <div id="youtube"></div>
-        </div>
-        <div class="box" data-block-type="iframe" style="height: 480px align= right">
+        
+        <frameborder="0"  height= "480" align= "left">
             <!--This is where you are going to put Tableau-->
             <div id="tableauViz1"></div>
-        </div>
+        
 
     </body>
 
@@ -39,7 +39,7 @@
         var onePh = document.getElementById("tableauViz1");
         oneUrl = "https://public.tableau.com/views/TheLast60SecondsofYourLife2/FlyingtheFinalTurn?:showVizHome=no&:display_spinner=no&:jsdebug=n&:embed=y&:display_overlay=no&:display_static_image=no&:animate_transition=yes";
         var oneOptions = {
-            width: "100%",
+            width: "50%",
             height: "110%",
             hideTabs: true,
             hideToolbar: true,
