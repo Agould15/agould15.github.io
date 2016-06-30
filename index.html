@@ -8,29 +8,26 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <style>
         #youtube {
-            height: 854px;
-            
+            height: 100%;
+            width: 100%;
             background-color: red;
         }
 
         #tableauViz1 {
-            height: 854px;
-            
+            height: 480px;
+            width: 854px;
             overflow: hidden;
             background-color: blue;
         }
     </style>
 
     <body>
-        <iframe src id="youtube" frameborder="0"  height= "480" align= "left" > 
-        </iframe>
-            
-        
-        <iframe src id="tableauViz1" frameborder="0"  height= "480" align= "right" >
+        <div id="youtube" style="float: left; width: 40%; height: 480px">
+        </div>
+        <div id="tableauViz1" style= "float: right; width 59%; height: 480px">
             <!--This is where you are going to put Tableau-->
-        </iframe>>
-         
-        
+            
+        </div>
 
     </body>
 
