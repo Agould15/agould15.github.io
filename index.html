@@ -9,13 +9,14 @@
     <style>
         #youtube {
             height: 900px;
-            width: 100%;
+            width: 500px;
             background-color: red;
         }
 
         #tableauViz1 {
             height: 900px;
-            width: 100%;
+            width: 675px;
+            overflow: hidden;
             background-color: blue;
         }
     </style>
@@ -59,8 +60,8 @@
 
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('youtube', {
-                height: '100%',
-                width: '120%',
+                height: '900',
+                width: '500',
                 videoId: 'ng2FyDrQbQ8',
                 playerVars: {
                     showinfo: 0,
